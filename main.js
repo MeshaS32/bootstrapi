@@ -42,24 +42,26 @@ fetch('https://dog.ceo/api/breeds/image/random')
 
 let weatherForm = document.querySelector("#weatherForm")
 let cityInput = document.querySelector("#cityInput")
- let temp = document.querySelector("#temp")
+let temp = document.querySelector("#temp")
 let wind = document.querySelector("#wind")
 let description = document.querySelector("#des")
 let sButton = document.querySelector('#submit')
 
 weatherForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    console.log(`Input: ${cityInput.value}`)
+    // let url = `https://goweather.herokuapp.com/weather/${cityInput.value}`;
+    console.log(`Input: ${cityInput.value}`);
+   
 
-    fetch(encodeURI(`https://goweather.herokuapp.com/weather/{${cityInput.value}}`))
+    fetch(encodeURI(`https://goweather.herokuapp.com/weather/${cityInput.value}`))
     .then(function(response){
         console.log(2)
-         return(response.json())
+         return(response.json());
          
     })
     .then(function(data){
-        console.log(data);
-        data.innerHTML = data.temperature
+        console.log(data.forecast[0]);
+        temp.innerText = data.temperature
         wind.innerHTML = data.wind
         description.innerHTML = data.description
     
